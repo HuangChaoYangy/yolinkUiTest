@@ -1,10 +1,11 @@
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.wait import WebDriverWait
+from appium import webdriver
 
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(5)
 
     def find_element_o(self,loc,timeout=30,poll=0.5):
         """

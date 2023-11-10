@@ -1,5 +1,6 @@
 from base.baseBage import BasePage
-from appium.webdriver.common.mobileby import By
+# from appium.webdriver.common.mobileby import By
+from selenium.webdriver.common.by import By
 
 class LoginPage(BasePage):
 
@@ -19,4 +20,11 @@ class LoginPage(BasePage):
         self.input_text(self.click_username,username,'输入账号')
         self.input_text(self.click_password,password,'输入密码')
         self.click_element(self.check_xieyi,'勾选协议')
+        # self.driver.implicitly_wait(3)
         self.click_element(self.click_login,'点击登录')
+
+
+if __name__ == '__main__':
+
+    loginObject = LoginPage(BasePage)
+    loginObject.login(username='18728421687',password='12345678')

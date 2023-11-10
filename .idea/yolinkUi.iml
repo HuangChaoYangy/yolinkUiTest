@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../code" />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="D:\Anaconda\envs\python38" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (yolinkUi)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
