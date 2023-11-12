@@ -44,3 +44,23 @@ class BasePage:
         :return:
         """
         TouchAction(self.driver).long_press(el=ele,duration=duration)
+
+    def swipe(self,start_x,start_y,end_x,end_y,duration):
+        '''
+        滑动操作
+        :param start_x: 左滑的坐标
+        :param start_y: 右滑的坐标
+        :param end_x: 上滑的坐标
+        :param end_y: 下滑的坐标
+        :param duration: 等待时间
+        :return:
+        '''
+        windows_size = self.driver.get_window_size()
+        x = windows_size['width']
+        y = windows_size['height']
+        self.driver.swipe(start_x=x*start_x,
+                          start_y=y*start_y,
+                          end_x=x*end_x,
+                          end_y=y*end_y,
+                          duration=duration)
+
