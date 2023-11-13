@@ -284,7 +284,7 @@ if __name__ == "__main__":
 
     # csv_data = yam.get_csv_to_Json(csv_path="../credit_data_new/dataSource.csv")
 
-    data = yam.get_testcase_params(csv_path="../credit_data_new/ReportManagement/dailyReport.csv", yaml_file="../credit_data_new/ReportManagement/dailyReport.yaml", new_yaml_file="../credit_data_new/ReportManagement/dailyReport_case.yaml")
+    # data = yam.get_testcase_params(csv_path="../credit_data_new/ReportManagement/dailyReport.csv", yaml_file="../credit_data_new/ReportManagement/dailyReport.yaml", new_yaml_file="../credit_data_new/ReportManagement/dailyReport_case.yaml")
 
     # configure_file = yam.params_yaml_data(data=data, isAll=False)
     # print(configure_file)
@@ -296,9 +296,10 @@ if __name__ == "__main__":
     # result = ya.get_yaml_data(fileDir='../credit_data/dataSourceReportTotal.yaml', isAll=False)
     # result = ya.get_yaml_data(fileDir='../test_data/sport_params.yaml', isAll=True)
 
-    result = ya.read_yaml_file(yaml_file='../credit_data_new/ReportManagement/dailyReport_case.yaml', isAll=False)
-    # result = yam.load_yaml(yaml_file='../credit_data_new/dataSource_case.yaml')
-    print(result)
-    # result = ya.write_yaml_file(yaml_file='../test_data/token_data.yaml', data=[{'test': 'test'}])
-    # result = ya.clear_yaml_file(yaml_file='../test_data/token_data.yaml')
+    rootPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  #获取文件的绝对路径
+    print(rootPath)
+    path = os.path.join(rootPath,"config\devicesConfig.yaml")       # 获取当前文件的路径
+    print(path)
+    devices_result = ya.read_yaml_file(yaml_file='../config/devicesConfig.yaml', isAll=True)
+    print(devices_result)
 
