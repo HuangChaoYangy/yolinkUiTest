@@ -2,15 +2,15 @@ desiredCaps:
   #设备信息
   platformName: Android
   #设备系统版本
-  paltformVersion: 7.1.2
+  paltformVersion: '12'
   #app包名
   appPackage: cn.com.quanyou.attnd
   #app启动activity
   appActivity: cn.com.quanyou.attnd.ui.SplashActivity
   #设备名字
-  deviceName: xiaomi
+  deviceName: 21091116AC
   #不清除应用数据
-  noReset: True
+  noReset: False
   #允许输入中文
   unicodeKeyboard: True
   resetKeyboard: True

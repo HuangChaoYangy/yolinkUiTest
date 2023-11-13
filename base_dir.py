@@ -8,6 +8,6 @@ import os
 # 项目的路径
 # base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # base_dir = 'D:\project\BfLibrary'
-base_dir = r'Z:\工具\yolinkUi'
+base_dir = r'D:\testCode\yolinkUi'
 # 日志地址
 log_dir = os.path.join(base_dir, 'logsFile')
