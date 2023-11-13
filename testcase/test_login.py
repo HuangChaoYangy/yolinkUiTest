@@ -23,7 +23,7 @@ class TestLogin:
 
     @allure.story("yolink登录")
     @allure.title("输入账号密码，点击登录")
-    @pytest.mark.parametrize("username,password",[("18728421687","12345678"),("15178713870","12345678")])
+    @pytest.mark.parametrize("username,password",[("18728421687","12345678"),("15178713870","12345678"),("15608078361","12345678")])
     def test_login(self,username, password):
         with allure.step("实例化页面"):
             login_page = LoginPage(self.driver)
