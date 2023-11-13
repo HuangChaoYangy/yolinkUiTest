@@ -1,5 +1,5 @@
 from base.baseBage import BasePage
-# from appium.webdriver.common.mobileby import By
+from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.common.by import By
 
 class LoginPage(BasePage):
