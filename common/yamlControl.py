@@ -297,9 +297,11 @@ if __name__ == "__main__":
     # result = ya.get_yaml_data(fileDir='../test_data/sport_params.yaml', isAll=True)
 
     rootPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  #获取文件的绝对路径
-    print(rootPath)
+    # print(rootPath)
     path = os.path.join(rootPath,"config\devicesConfig.yaml")       # 获取当前文件的路径
-    print(path)
+    # print(path)
     devices_result = ya.read_yaml_file(yaml_file='../config/devicesConfig.yaml', isAll=True)
-    print(devices_result)
+    # print(devices_result)
 
+    result = ya.read_yaml_file(yaml_file='../testdata/usrdata.yaml', isAll=True)
+    # print(result)
