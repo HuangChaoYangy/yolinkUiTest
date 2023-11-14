@@ -21,9 +21,13 @@ class TestLogin:
     def teardown_class(self):
         self.driver.quit()
 
+    userInfo = Yaml_data().read_yaml_file(yaml_file='../testdata/usrdata.yaml', isAll=True)
+    user_info = []
+    for usrdata in userInfo:
+        user_info.append((str(usrdata['uname']), str(usrdata['pwd'])))
     @allure.story("yolink登录")
     @allure.title("输入账号密码，点击登录")
-    @pytest.mark.parametrize("username,password",[("18728421687","12345678"),("15178713870","12345678"),("15608078361","12345678")])
+    @pytest.mark.parametrize("username,password",user_info)
     def test_login(self,username, password):
         with allure.step("实例化页面"):
             login_page = LoginPage(self.driver)
