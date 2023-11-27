@@ -66,7 +66,7 @@ class BasePage:
                           duration=duration)
 
 
-    def get_scrren(self, screen_name):
+    def get_screen(self, screen_name):
         '''
         全屏截图
         :param screen_name:
