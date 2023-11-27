@@ -1,6 +1,7 @@
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.wait import WebDriverWait
 from appium import webdriver
+from PIL import Image
 
 class BasePage:
     def __init__(self, driver):
@@ -63,4 +64,31 @@ class BasePage:
                           end_x=x*end_x,
                           end_y=y*end_y,
                           duration=duration)
+
+
+    def get_scrren(self, screen_name):
+        '''
+        全屏截图
+        :param screen_name:
+        :return:
+        '''
+        self.driver.get_screenshot_as_file("screen/" + screen_name)
+
+    def screenshot(self, partName, pictureName):
+        '''
+        共用方法：根据坐标区域精确截图
+        :param partName:
+        :param pictureName:
+        :return:
+        '''
+        box = (0, 0, 0, 0)
+        if partName == 'default':
+            box = (0, 210, 1110, 1430)  # 区域1
+        elif partName == 'hair':
+            box = (110, 270, 950, 1145)  # 区域2
+        self.driver.get_screenshot_as_file(
+            '../picture/screenshot.png')  # 路径和名称，图片是.png格式
+        image = Image.open('../picture/screenshot.png')
+        new_image = image.crop(box)
+        new_image.save(pictureName)  # 截取精确区域后的图片
 
