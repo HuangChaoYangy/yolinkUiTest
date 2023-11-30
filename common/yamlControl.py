@@ -301,7 +301,8 @@ if __name__ == "__main__":
     path = os.path.join(rootPath,"config\devicesConfig.yaml")       # 获取当前文件的路径
     # print(path)
     devices_result = ya.read_yaml_file(yaml_file='../config/devicesConfig.yaml', isAll=True)
-    # print(devices_result)
+    print(devices_result)
 
-    result = ya.read_yaml_file(yaml_file='../testdata/usrdata.yaml', isAll=True)
+    # result = ya.read_yaml_file(yaml_file='../testdata/usrdata.yaml', isAll=True)
+    result = ya.read_yaml_file(yaml_file='../testdata/testLogin/test_login.yaml', isAll=True)
     # print(result)
