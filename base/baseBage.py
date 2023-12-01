@@ -16,7 +16,10 @@ class BasePage:
         :param poll: 查询频率
         :return: 定位对象
         """
-        return WebDriverWait(self.driver,timeout,poll).until(lambda x:x.find_element(*loc))
+        try:
+            return WebDriverWait(self.driver, timeout, poll).until(lambda x: x.find_element(*loc))
+        except Exception as e:
+            return "查找元素异常"
         #return self.driver.find_element(*loc)
 
     def click_element(self,loc,desc=''):
