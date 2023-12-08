@@ -2,7 +2,7 @@ desiredCaps:
   #设备信息
   platformName: Android
   #设备系统版本
-  paltformVersion: '12'
+  paltformVersion: '13'
   #app包名
   appPackage: cn.com.quanyou.attnd
   #app启动activity
