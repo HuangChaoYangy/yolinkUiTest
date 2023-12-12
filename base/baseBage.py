@@ -1,7 +1,11 @@
+import os
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.wait import WebDriverWait
 from appium import webdriver
 from PIL import Image
+import datetime
+from base_dir import screenshots_dir
+import time
 
 class BasePage:
     def __init__(self, driver):
@@ -94,4 +98,17 @@ class BasePage:
         image = Image.open('../picture/screenshot.png')
         new_image = image.crop(box)
         new_image.save(pictureName)  # 截取精确区域后的图片
+
+    def get_screenshot(self):
+        '''
+        截图,截图的方法中不允许存在以下符号 / : * ? # ” < > |不然截图失败，所以只能将：改为-
+        :return:
+        '''
+
+        img_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) + '//screenshots//'
+        # time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        currrent_time =datetime.datetime.now()
+        now_time = currrent_time.strftime("%Y-%m-%d %H-%M-%S")
+        screen_save_path = screenshots_dir + "\\" + now_time + ".png"
+        self.driver.get_screenshot_as_file(screen_save_path)
 
