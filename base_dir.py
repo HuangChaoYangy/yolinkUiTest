@@ -13,5 +13,6 @@ base_dir = os.path.join(rootPath + "\yolinkUi")
 # base_dir =r'C:\Users\huangchaoyang3\PycharmProjects\yolinkUi'
 # 日志地址
 log_dir = os.path.join(base_dir, 'logsFile')
+screenshots_dir = os.path.join(base_dir, 'screenshots')
 
-print(base_dir)
+print(screenshots_dir)
