@@ -94,7 +94,8 @@ class BasePage_test(initsetupteardown):
         :param screen_name:
         :return:
         '''
-        self.driver.get_screenshot_as_file("screen/" + screen_name)
+        self.driver.get_screenshot_as_file(screen_name + "../picture/screenshot.png" )
+
 
     def screenshot_t(self, partName, pictureName):
         '''

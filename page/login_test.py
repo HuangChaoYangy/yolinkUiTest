@@ -68,6 +68,8 @@ class initsetupteardown(BasePage_test):
             result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
             print(result)
             print(222222222222222222222222)
+            shotscreen = self.get_screen_t(screen_name='截图')
+
             return result
 
         else:
@@ -81,6 +83,7 @@ class initsetupteardown(BasePage_test):
             # result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
             result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
             print(1111111111111111)
+            shotscreen = self.get_screen_t(screen_name='截图')
             return result
 
 
