@@ -56,7 +56,7 @@ class initsetupteardown(BasePage_test):
 
     def login(self,username,password):
         user_avatar_text = self.find_element_o_t(loc=(By.ID, "cn.com.quanyou.attnd:id/user_avatar"))
-        print(user_avatar_text)
+        # print(user_avatar_text)
         if user_avatar_text == "查找元素异常":
             self.input_text_t(self.click_username,username,'输入账号')
             self.input_text_t(self.click_password,password,'输入密码')
@@ -65,10 +65,12 @@ class initsetupteardown(BasePage_test):
             self.click_element_t(self.click_login,'点击登录')
 
             # result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
-            result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            try:
+                result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            except:
+                result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
             print(result)
             print(222222222222222222222222)
-            shotscreen = self.get_screen_t(screen_name='截图')
 
             return result
 
@@ -81,9 +83,13 @@ class initsetupteardown(BasePage_test):
             self.click_element_t(self.click_login,'点击登录')
 
             # result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
-            result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            try:
+                result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            except:
+                result = self.find_element_o_t(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
+            print(result)
             print(1111111111111111)
-            shotscreen = self.get_screen_t(screen_name='截图')
+
             return result
 
 
@@ -95,4 +101,4 @@ class initsetupteardown(BasePage_test):
 if __name__ == '__main__':
 
     loc = initsetupteardown()
-    login=loc.login(username="18728421687", password="12345678")
+    login=loc.login(username="18728421687", password="123456789")
