@@ -45,7 +45,10 @@ class LoginPage(BasePage):
             self.click_element(self.click_login,'点击登录')
 
             # result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
-            result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            try:
+                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            except:
+                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
 
             return result
 
@@ -57,8 +60,10 @@ class LoginPage(BasePage):
             self.driver.implicitly_wait(3)
             self.click_element(self.click_login,'点击登录')
 
-            # result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
-            result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            try:
+                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
+            except:
+                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
 
             return result
 
