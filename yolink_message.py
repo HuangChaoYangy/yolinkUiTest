@@ -8,6 +8,7 @@ import time
 import threading
 from multiprocessing import process
 import random
+import pyautogui
 
 from pywinauto.keyboard import SendKeys
 from faker import Faker
@@ -55,12 +56,32 @@ class Session:
         element_list = ['0D87CE938606D874E0656FAF8EF401EA','0D8BDF413D761337E0656FAF8EF401EA','0D8859F20683E053E0656FAF8EF401EA']
         random_value = random.choice(element_list)
 
+        pyautogui.keyDown('ctrl')
+        pyautogui.keyDown('B')
+        time.sleep(3)
+
+        # 定位下拉框并点击展开
+        dropdown = (By.XPATH,"//input[@placeholder='请选择客户端']")
+        self.findelmend_o(dropdown).click()
+
+        # 定位下拉选项并点击目标选项
+        options = (By.XPATH,"//div[@class='el-select-dropdown__item selected hover']")
+        for option in options:
+            if option == "el-input el-input--suffix":       # el-input el-input--suffix对应yoyoLink-windows-2.0.0
+                option.click()
+                break
+        time.sleep(3)
+        close_window = (By.XPATH, "//i[@class='el-dialog__close el-icon el-icon-close']")
+        self.findelmend_o(close_window).click()
+        time.sleep(3)
+
         username = (By.XPATH,"//input[@placeholder='请输入工号']")
         password = (By.XPATH,"//input[@placeholder='请输入密码']")
-        logbtn = (By.XPATH,"//div[@class='loginBtn']")
-
         time.sleep(3)
         session = (By.XPATH, f"//div[@id='chat_list_{random_value}']")  # 定位会话窗口
+        # 点击登录
+        logbtn = (By.XPATH,"//div[@class='loginBtn']")
+        time.sleep(3)
         self.findelmend_o(username).send_keys(name)
         self.findelmend_o(password).send_keys(psd)
         self.findelmend_o(logbtn).click()
@@ -86,8 +107,8 @@ class Session:
                 self.findelmend_o(input_text).send_keys(f'编号【{i}】 ',self.fk.text())
                 self.findelmend_o(send_text).click()
         else:
+            time.sleep(5)
             self.deiver.quit()
-
 
 
 if __name__ == '__main__':
