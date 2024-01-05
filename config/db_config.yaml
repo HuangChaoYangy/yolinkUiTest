@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2024/1/4 18:50
+# @Author  : 黄朝阳
+# @FileName: 数据库配置文件        testing  production
+# @Software: PyCharm
+
+-
+  environment: "testing"
+  project: "kaoqin"
+-
+# 测试环境oracle配置-yolink
+  yolink_testing:
+    host: '172.30.4.181'
+    user: 'YOLINK'
+    password: "Qy_yok#2022"
+    service_name: "yolink"
+    port: 1521
+    describe: '测试环境oracle配置-yolink'
+
+# 测试环境oracle配置-考勤平台
+  kaoqin_testing:
+    host: '172.30.3.130'
+    user: 'attndms'
+    password: "Qy_attndms"
+    service_name: "cdstest"
+    port: 1521
+    describe: '测试环境oracle配置-考勤平台'
+
+# 测试环境oracle配置-办公平台
+  common_testing:
+    host: '172.30.3.220'
+    user: 'usercenter_new'
+    password: "usercenter_new"
+    service_name: "mdkbuat"
+    port: 1521
+    describe: '测试环境oracle配置-办公平台'
+
+
+# 正式环境oracle配置-yolink
+  yolink_production:
+    host: '172.31.12.211'
+    user: 'dataquery'
+    password: "Qy_dataq#2023"
+    service_name: "yolink"
+    port: 1521
+    describe: '正式环境oracle配置-yolink'
+
+# 正式环境oracle配置-考勤/办公平台
+  common_production:
+    host: '10.10.1.100'
+    user: 'eqbs_query'
+    password: "Qy_eqbsq#2023"
+    service_name: "attndms"
+    port: 1521
+    describe: '正式环境oracle配置-考勤/办公平台'

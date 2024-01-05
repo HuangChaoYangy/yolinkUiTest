@@ -14,5 +14,7 @@ base_dir = os.path.join(rootPath + "\yolinkUi")
 # 日志地址
 log_dir = os.path.join(base_dir, 'logsFile')
 screenshots_dir = os.path.join(base_dir, 'screenshots')
+db_config = os.path.join(base_dir,'config','db_config.yaml')
+base_url_config = os.path.join(base_dir,'config','baseUrl_config.yaml')
 
-print(screenshots_dir)
+# print(screenshots_dir)
