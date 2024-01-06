@@ -103,6 +103,7 @@ class LoginPage1(BasePage):
                 # log().info('--进入打印---')
             else:
                 self.swith_to(username,password)
+                self.quit_login()
                 # log().info('self.click_login')
         else:
             self.quit_login()
