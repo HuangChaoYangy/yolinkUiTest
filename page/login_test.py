@@ -32,7 +32,7 @@ class initsetupteardown(BasePage_test):
         #设备信息
         desiredCaps["platformName"] = "Android"
         #设备系统版本
-        desiredCaps["paltformVersion"] = "12"
+        desiredCaps["paltformVersion"] = "13"
         #app包名
         desiredCaps["appPackage"] = "cn.com.quanyou.attnd"
         #app启动activity
@@ -49,7 +49,7 @@ class initsetupteardown(BasePage_test):
         desiredCaps["automationName"] = "UiAutomator2"
         #修改超时时长，默认60s
         desiredCaps["newCommandTimeout"] = 3600
-
+        print(desiredCaps)
         #获取driver对象
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub",desiredCaps)
         return self.driver

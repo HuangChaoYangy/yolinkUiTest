@@ -44,11 +44,12 @@ class LoginPage(BasePage):
             self.driver.implicitly_wait(3)
             self.click_element(self.click_login,'点击登录')
 
-            # result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']"))
-            try:
-                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
-            except:
-                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
+            result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
+            if result=='查找元素异常':
+                pass
+            else:
+                self.quit_login()
+                # self.login(username,password)
 
             return result
 
@@ -66,6 +67,16 @@ class LoginPage(BasePage):
                 result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
 
             return result
+
+
+    def quit_login(self):
+        """
+        退出登录
+        :return:
+        """
+        self.click_element((By.XPATH, "//android.widget.TextView[@text='我的']"))
+        self.click_element((By.XPATH, "//android.widget.TextView[@text='设置']//.."))
+        self.click_element((By.ID, "cn.com.quanyou.attnd:id/bn_logout"))
 
 
 if __name__ == '__main__':

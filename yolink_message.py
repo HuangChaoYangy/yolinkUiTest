@@ -56,23 +56,23 @@ class Session:
         element_list = ['0D87CE938606D874E0656FAF8EF401EA','0D8BDF413D761337E0656FAF8EF401EA','0D8859F20683E053E0656FAF8EF401EA']
         random_value = random.choice(element_list)
 
-        pyautogui.keyDown('ctrl')
-        pyautogui.keyDown('B')
-        time.sleep(3)
-
-        # 定位下拉框并点击展开
-        dropdown = (By.XPATH,"//input[@placeholder='请选择客户端']")
-        self.findelmend_o(dropdown).click()
-
-        # 定位下拉选项并点击目标选项
-        options = (By.XPATH,"//div[@class='el-select-dropdown__item selected hover']")
-        for option in options:
-            if option == "el-input el-input--suffix":       # el-input el-input--suffix对应yoyoLink-windows-2.0.0
-                option.click()
-                break
-        time.sleep(3)
-        close_window = (By.XPATH, "//i[@class='el-dialog__close el-icon el-icon-close']")
-        self.findelmend_o(close_window).click()
+        # pyautogui.keyDown('ctrl')
+        # pyautogui.keyDown('B')
+        # time.sleep(3)
+        #
+        # # 定位下拉框并点击展开
+        # dropdown = (By.XPATH,"//input[@placeholder='请选择客户端']")
+        # self.findelmend_o(dropdown).click()
+        #
+        # # 定位下拉选项并点击目标选项
+        # options = (By.XPATH,"//div[@class='el-select-dropdown__item selected hover']")
+        # for option in options:
+        #     if option == "el-input el-input--suffix":       # el-input el-input--suffix对应yoyoLink-windows-2.0.0
+        #         option.click()
+        #         break
+        # time.sleep(3)
+        # close_window = (By.XPATH, "//i[@class='el-dialog__close el-icon el-icon-close']")
+        # self.findelmend_o(close_window).click()
         time.sleep(3)
 
         username = (By.XPATH,"//input[@placeholder='请输入工号']")
@@ -114,4 +114,4 @@ class Session:
 if __name__ == '__main__':
 
     se = Session()
-    se.send_texta(10, 'fengjing', '12345678a.')
+    se.send_texta(1000000, 'fengjing', '12345678a.')

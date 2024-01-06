@@ -2,28 +2,28 @@
   data:
     title: 输入正确的账号,正确的密码,登录成功!
     uname: 18728421687
-    pwd: 12345678
+    pwd: 12345678a.
   resp:
-    except: '友信'
-    remark: '判断元素中是否存在文本"友信"'
+    except: '消息'
+    remark: '判断元素中是否存在文本"消息"'
 - #test_02用例
   data:
     title: 输入正确的账号,错误的密码,登录失败!
     uname: 18728421687
     pwd: 12345671
   resp:
-    except: '元素定位异常'
+    except: '查找元素异常'
 - #test_03用例
   data:
     title: 输入错误的账号,正确的密码,登录失败!
     uname: 18728421686
     pwd: 12345678
   resp:
-    except: '元素定位异常'
+    except: '查找元素异常'
 - #test_04用例
   data:
     title: 输入错误的账号,错误的密码,登录失败!
     uname: 18728421111
     pwd: 123456234
   resp:
-    except: '元素定位异常'
+    except: '查找元素异常'
