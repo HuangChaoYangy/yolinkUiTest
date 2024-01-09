@@ -130,6 +130,7 @@ class BasePage:
         now_time = currrent_time.strftime("%Y-%m-%d %H-%M-%S")
         screen_save_path = screenshots_dir + "\\" + now_time + ".png"
         self.driver.get_screenshot_as_file(screen_save_path)
+        return self.driver.get_screenshot_as_file(screen_save_path)
 
     def input_text(self,loc,text,desc=''):
         """
