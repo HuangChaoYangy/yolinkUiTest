@@ -1,5 +1,4 @@
-# from page.loginPage import LoginPage
-from login_ui import LoginPage1
+from page.loginPage import LoginPage
 import pytest,allure,os
 from common.initDriver import initsetupteardown
 from common.log import Bf_log
@@ -9,9 +8,9 @@ from base.baseBage import BasePage
 from selenium.webdriver.common.by import By
 
 # epic 项目名称描述
-@allure.epic('[epic] YOYO APP')
+@allure.epic('[项目名称] YOYO APP')
 # feature 项目版本
-@allure.feature('[feature] YOYO APP_V5.39')
+@allure.feature('[项目版本] YOYO APP_V5.39')
 class TestLogin:
     #获取driver
     def setup_class(self):
@@ -22,18 +21,15 @@ class TestLogin:
         path = os.path.join(rootPath, "config\devicesConfig.yaml")  # 获取当前文件的路径
         devices_result = Yaml_data().read_yaml_file(yaml_file=path, isAll=True)
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", devices_result["desiredCaps"])
-        # self.driver.terminate_app(appPackage)
 
     userPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  # 获取文件的绝对路径
     user_path = os.path.join(userPath, "testdata/testLogin/test_login.yaml")  # 获取当前文件的路径
     userInfo = Yaml_data().read_yaml_file(yaml_file=user_path, isAll=False)
     # 用例模块
-    @allure.story('[story] 用户登录模块')
-    # 用例标题
-    @allure.title('[Title] 输入正确的账号,正确的密码,登录成功!')
+    @allure.story('[功能模块] 用户登录模块')
     @pytest.mark.parametrize("inData, expData",userInfo)
     # 管理测试用例的链接地址
-    @allure.testcase(url='https://www.kdocs.cn/l/ctnseqdi0obm',name='测试用例地址')
+    @allure.testcase(url='http://pan.quanyou.com.cn/index.php?mod=onlyoffice&path=dlNQaTRtbVFaODBOLV94YWVfTGQ4ZHVGdDFQNTFnNWVtTkJsaHhaNTV4OU9nTy01VFZubWNTVi12QmxtR1pDU3BzMjZ0V2M3QTBXYjVn',name='测试用例地址')
     # 管理缺陷的链接地址
     @allure.issue(url='http://172.31.11.219/bug-browse-30-0-all.html', name='缺陷管理工具禅道地址')
     # 用例描述
@@ -42,22 +38,20 @@ class TestLogin:
     # 用例等级 blocker、critical、normal、minor、trivial
     def test_login(self,inData, expData):
         with allure.step("实例化页面"):
-            # login_page = LoginPage(self.driver)
-            login_page1 = LoginPage1(self.driver)
+            login_page = LoginPage(self.driver)
 
+        title = inData['title']
+        allure.dynamic.title(title)
         username = inData['uname']
         password = inData['pwd']
         except_result = expData['except']
-        print(except_result)
-        print(3333333333333333333333333333333333333333)
+        print("期望："+except_result)
         with allure.step("进行登录操作"):
-            actual_result = login_page1.login(username=username, password=password)
-            print(actual_result)
-            print(111111111111111111111111111111111111111111111)
-            LoginPage1(self.driver).get_screenshot()
+            actual_result = login_page.login(username=username, password=password)
+            print('实际结果：'+actual_result)
 
             with allure.step(f"步骤一：打开yoyo APP,进行登录页面"):
-                Bf_log('test_login').info(f"步骤一：打开yoyo APP,开始执行用例:{inData['title']}")
+                Bf_log('test_login').info(f"步骤一：打开yoyo APP,开始执行用例:{title}")
             with allure.step(f"步骤二：输入账号：{username}"):
                 Bf_log('test_login').info(f"步骤二：输入账号：{username}")
             with allure.step(f"步骤三：输入密码：{password}"):
@@ -68,28 +62,17 @@ class TestLogin:
                 Bf_log('test_login').info(f"步骤五：点击登录按钮")
 
             # 判断登录成功的定位信息是否存在
-            if actual_result=='消息':
-
-                if len(actual_result) == len(except_result):
-                    if actual_result == except_result:
-                        with allure.step(f'步骤六：实际元素结果：{actual_result}, 期望元素结果：{except_result},==》测试通过'):
-                            Bf_log('test_login').info(f'步骤六：实际元素结果:{actual_result}, 期望元素结果：{except_result},==》测试通过')
-                    else:
-                        with allure.step(f'步骤六：实际元素结果：{actual_result}, 期望元素结果：{except_result},==》测试不通过'):
-                            Bf_log('test_login').info(f'步骤六：实际元素结果:{actual_result}, 期望元素结果：{except_result},==》测试不通过')
-                    assert actual_result == except_result
-                else:
-                    print("ERROR,长度不一致,用例不通过")
-                    assert actual_result == except_result
+            if actual_result == except_result:
+                with allure.step(f'步骤六：实际元素结果：{actual_result}, 期望元素结果：{except_result},==》测试通过'):
+                    Bf_log('test_login').info(f'步骤六：实际元素结果:{actual_result}, 期望元素结果：{except_result},==》测试通过')
+                with allure.step(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}'):
+                    Bf_log('test_login').info(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}')
             else:
-                if actual_result == "查找元素异常":
-                    with allure.step(f'步骤六：实际元素结果：{actual_result}, 期望元素结果：元素定位异常,==》测试通过'):
-                        Bf_log('test_login').info(
-                            f'步骤六：实际元素结果:{actual_result}, 期望元素结果：元素定位异常,==》测试通过')
-                else:
-                    raise AssertionError('ERROR')
-                assert actual_result == "查找元素异常"
-
+                with allure.step(f'步骤七：实际元素结果：{actual_result}, 期望元素结果：{except_result},==》测试不通过'):
+                    Bf_log('test_login').info(f'步骤六：实际元素结果:{actual_result}, 期望元素结果：{except_result},==》测试不通过')
+                with allure.step(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}'):
+                    Bf_log('test_login').info(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}')
+            assert str(actual_result) == str(except_result)
 
     #执行完用例之后退出会话
     def teardown_class(self):

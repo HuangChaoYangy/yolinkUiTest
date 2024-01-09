@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2023/11/15 16:56
+# @Author  : 黄朝阳
+# @FileName: loginPage
+# @Software: PyCharm
+
 from base.baseBage import BasePage
 from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.common.by import By
@@ -8,66 +14,68 @@ class LoginPage(BasePage):
     check_xieyi = (By.ID,"cn.com.quanyou.attnd:id/deal_check_box")
     #切换[密码登录]
     click_pulogin = (By.ID,"cn.com.quanyou.attnd:id/password_login_btn")
-    # 切换[刷脸登录]
-    face_login = (By.ID, "cn.com.quanyou.attnd:id/face_login_way")
     #输入账号
     click_username = (By.ID,"cn.com.quanyou.attnd:id/username")
     #输入密码
     click_password = (By.ID,"cn.com.quanyou.attnd:id/password")
     #登录
     click_login = (By.ID,"cn.com.quanyou.attnd:id/login")
-    #登录成功提示
-    # login_success_loc = (By.ID, "cn.com.quanyou.attnd:id/txt_staffNo")
-    # login_success_loc = (By.XPATH, "//android.widget.TextView[@text='友信']")
-    # yoyo头像
-    user_avatar = (By.ID, "cn.com.quanyou.attnd:id/user_avatar")
-    #登录失败提示
-    login_fail_loc = (By.ID, "cn.com.quanyou.attnd:id/tv_content")
-    #账号密码错误提示
-    user_prd_error_loc = (By.XPATH, "//android.widget.TextView[@text='账号密码错误!!']")
-    #员工不存在提示
-    user_not_exist_loc = (By.XPATH, "//android.widget.TextView[@text='员工不存在.']")
+    #弹框确认
+    click_pop= (By.ID,"cn.com.quanyou.attnd:id/tv_confirm")
+    # 弹框元素获取
+    pop_text=(By.ID,"cn.com.quanyou.attnd:id/tv_content")
+    # 协议确认取消
+    xieyi_queren =(By.ID,"cn.com.quanyou.attnd:id/agree_button")
+    xieyi_qux =(By.ID,"cn.com.quanyou.attnd:id/cancel_button")
 
-    def login(self,username,password):
-        '''
-        登录yoyo
+    def swith_to(self,username,password):
+        """
+        处于账号密码登录界面登录
+        :param username:
+        :param password:
+        :return:返回元素对象
+        """
+        self.click_element(self.click_username)
+        self.find_element_o(self.click_username).clear()
+        self.click_element(self.click_password)
+        self.find_element_o(self.click_password).clear()
+        self.input_text(self.click_username, username, '输入账号')
+        self.input_text(self.click_password, password, '输入密码')
+        self.click_element(self.click_login, '点击登录')
+        if self.is_element_exist(self.xieyi_qux):
+            self.click_element(self.xieyi_queren)
+            self.click_element(self.click_login, '点击登录')
+
+        if self.is_element_exist((By.XPATH,"//android.widget.TextView[@text='消息']")):
+            return self.find_element_o((By.XPATH, "//android.widget.TextView[@text='消息']")).text
+        else:
+            result = self.find_element_o(self.pop_text).text
+            self.click_element(self.click_pop)
+            print(result)
+            return result
+
+
+    def swith_todo(self,username,password):
+        """
+        切换为密码登录
         :param username:
         :param password:
         :return:
-        '''
-        # 判断刷脸登录按钮是否存在
-        user_avatar_text = self.find_element_o(loc=(By.ID, "cn.com.quanyou.attnd:id/user_avatar"))
-        if user_avatar_text == "查找元素异常":
-            self.input_text(self.click_username,username,'输入账号')
-            self.input_text(self.click_password,password,'输入密码')
-            self.click_element(self.check_xieyi,'勾选协议')
-            self.driver.implicitly_wait(3)
-            self.click_element(self.click_login,'点击登录')
-
-            result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
-            if result=='查找元素异常':
-                pass
-            else:
-                self.quit_login()
-                # self.login(username,password)
-
-            return result
-
+        """
+        self.click_element(self.click_pulogin, '密码登录')
+        self.input_text(self.click_username, username, '输入账号')
+        self.input_text(self.click_password, password, '输入密码')
+        self.click_element(self.check_xieyi, '勾选协议')
+        self.click_element(self.click_login, '点击登录')
+        if self.is_element_exist((By.XPATH,"//android.widget.TextView[@text='消息']")):
+            return self.find_element_o((By.XPATH, "//android.widget.TextView[@text='消息']")).text
         else:
-            self.click_element(self.click_pulogin, '切换密码登录')
-            self.input_text(self.click_username,username,'输入账号')
-            self.input_text(self.click_password,password,'输入密码')
-            self.click_element(self.check_xieyi,'勾选协议')
-            self.driver.implicitly_wait(3)
-            self.click_element(self.click_login,'点击登录')
-
-            try:
-                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']")).text
-            except:
-                result = self.find_element_o(loc=(By.XPATH, "//android.widget.TextView[@text='友信']"))
-
-            return result
-
+            self.click_element(self.click_pop)
+            self.click_element(self.click_username)
+            self.find_element_o(self.click_username).clear()
+            self.click_element(self.click_password)
+            self.find_element_o(self.click_password).clear()
+            return "查找元素异常"
 
     def quit_login(self):
         """
@@ -78,8 +86,32 @@ class LoginPage(BasePage):
         self.click_element((By.XPATH, "//android.widget.TextView[@text='设置']//.."))
         self.click_element((By.ID, "cn.com.quanyou.attnd:id/bn_logout"))
 
+    def login(self,username,password):
+        '''
+        登录
+        :param username:
+        :param password:
+        :return:
+        '''
+        if self.find_element_o((By.XPATH,"//android.widget.TextView[@text='消息']"),timeout=3)!="消息":
+            if self.is_element_exist(self.click_pulogin):
+                print('进入刷脸')
+                result =self.swith_todo(username,password)
+                self.quit_login()
+                return result
+            else:
+                print('密码登录页面')
+                result = self.swith_to(username,password)
+                return result
+        else:
+            print('退出')
+            self.quit_login()
+            result =self.swith_to(username,password)
+            return result
+
 
 if __name__ == '__main__':
 
     loginObject = LoginPage(BasePage)
     loginObject.login(username='18728421687',password='12345678')
+
