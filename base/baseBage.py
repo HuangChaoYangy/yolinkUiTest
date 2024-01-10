@@ -1,4 +1,5 @@
 import os
+import allure
 from tkinter import Image
 
 from appium.webdriver.common.touch_action import TouchAction
@@ -152,9 +153,9 @@ class BasePage:
         el = self.find_element_o(loc).location
         TouchAction(self.driver).long_press(x=el['x'],y=el['y'],duration=duration).release().perform()
 
-        # action = TouchAction(self.driver)
-        # action.long_press(x=el['x'], y=el['y']).wait(duration).move_to(x=el['x'], y=el['y']).release()
-        # action.release()
+        action = TouchAction(self.driver)
+        action.long_press(x=el['x'], y=el['y']).wait(duration).move_to(x=el['x'], y=el['y']).release()
+        action.release()
 
     def alter(self,alter_text):
         """
@@ -264,4 +265,31 @@ class BasePage:
             self.driver.swipe(start_x, y, end_x, y, duration_ms)
         else:
             print("请输入正确的方向")
+
+    def get_screenshots(self, doc):
+        now = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+        pic_name = now + '.png'
+        self.driver.get_screenshot_as_file(pic_name)
+        with open(pic_name, mode='rb') as f:
+            file = f.read()
+        allure.attach(file, doc, allure.attachment_type.PNG)
+        return pic_name
+
+    def result_assert(self, res, expected, doc=''):
+        '''
+        通过断言进行截图
+        :param res:
+        :param expected:
+        :param doc:
+        :return:
+        '''
+        try:
+            assert res in expected
+            with allure.step('添加成功截图...'):
+                screen_name = self.get_screenshots(doc)
+        except AssertionError:
+            with allure.step('添加失败截图...'):
+                screen_name = self.get_screenshots(doc)
+                print((f'截图成功，图片为{screen_name}'))
+            raise
 

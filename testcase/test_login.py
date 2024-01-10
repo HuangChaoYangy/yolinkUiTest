@@ -11,17 +11,16 @@ from selenium.webdriver.common.by import By
 @allure.epic('[项目名称] YOYO APP')
 # feature 项目版本
 @allure.feature('[项目版本] YOYO APP_V5.39')
-class TestLogin:
+class TestLogin():
     #获取driver
     def setup_class(self):
         # 获取initDriver文件中的driver对象
-        # self.driver = initsetupteardown().init_driver()
+        self.driver = initsetupteardown().init_driver()
 
-        rootPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  # 获取文件的绝对路径
-        path = os.path.join(rootPath, "config\devicesConfig.yaml")  # 获取当前文件的路径
-        devices_result = Yaml_data().read_yaml_file(yaml_file=path, isAll=True)
-        self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", devices_result["desiredCaps"])
-
+        # rootPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  # 获取文件的绝对路径
+        # path = os.path.join(rootPath, "config\devicesConfig.yaml")  # 获取当前文件的路径
+        # devices_result = Yaml_data().read_yaml_file(yaml_file=path, isAll=True)
+        # self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", devices_result["desiredCaps"])
     userPath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))  # 获取文件的绝对路径
     user_path = os.path.join(userPath, "testdata/testLogin/test_login.yaml")  # 获取当前文件的路径
     userInfo = Yaml_data().read_yaml_file(yaml_file=user_path, isAll=False)
@@ -73,6 +72,7 @@ class TestLogin:
                 with allure.step(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}'):
                     Bf_log('test_login').info(f'步骤七：截图：{LoginPage(self.driver).get_screenshot()}')
             assert str(actual_result) == str(except_result)
+
 
     #执行完用例之后退出会话
     def teardown_class(self):
