@@ -12,7 +12,7 @@ import requests
 import base64
 # from tzlocal import get_localzone
 # from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
-# from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 # from apscheduler.schedulers.background import BackgroundScheduler
 # fropandasm Crypto.PublicKey import RSA
 import hashlib
@@ -632,6 +632,11 @@ class CommonFunc(object):
                 raise AssertionError('ERROR,暂无支持该参数')
         else:
             raise AssertionError('ERROR,暂无支持该参数')
+
+    def APScheduler_time(self, function, interval='interval',seconds=0.5):
+        scheduler = BlockingScheduler()
+        scheduler.add_job(func=function, interval=interval, seconds=seconds)
+        scheduler.start()
 
     def check_two_list(self,actualResult, expectResult):
         '''
