@@ -27,8 +27,6 @@ fail = (By.ID,"cn.com.quanyou.attnd:id/errorLinearLayout")
 # 获取发送消息元素
 get_texts = (By.ID,"cn.com.quanyou.attnd:id/contentTextView")
 list_text = (By.XPATH,"//android.widget.TextView[@text='文件传输助手']/../android.widget.TextView[3]")
-# get_test = (By.XPATH,"//android.widget.TextView")
-
 
 class SessionText(BasePage):
 
